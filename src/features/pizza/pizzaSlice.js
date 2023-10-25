@@ -35,4 +35,8 @@ export function getPizzaStatus(state) {
 	return state.pizza.status
 }
 
+export function getAllPizza(state) {
+	return state.pizza.data
+}
+
 export default pizzaSlice.reducer
