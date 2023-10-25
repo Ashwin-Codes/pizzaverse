@@ -10,9 +10,19 @@ export default function Ratings({ rating }) {
 		stars.push(<FullStarIcon />)
 		i++
 	}
+
 	// Add a half star if found 0.5
 	if (rating < i && rating > i - 1) {
 		stars.push(<HalfStarIcon />)
+	}
+
+	// Handle if rating is 0
+	if (stars.length < 1) {
+		return (
+			<div className="flex gap-1 text-pizza-orange">
+				<p>No Ratings</p>
+			</div>
+		)
 	}
 
 	return <div className="flex gap-1 text-pizza-orange">{stars}</div>
