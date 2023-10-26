@@ -7,7 +7,7 @@ export default function Cart() {
 	// Subtotal
 	const cartTotal = cart
 		.map((item) => {
-			return item.price
+			return item.price * item.quantity
 		})
 		.reduce((price, accu) => {
 			return accu + price
