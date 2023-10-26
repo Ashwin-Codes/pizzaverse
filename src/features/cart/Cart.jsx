@@ -18,8 +18,8 @@ export default function Cart() {
 		<div className="text-olive-black w-11/12 mx-auto 2xl:w-[85%]">
 			<h1 className="font-bold text-xl tracking-wider">Items Added</h1>
 			<div className="flex flex-wrap justify-center gap-3 px-4 py-2 md:justify-start">
-				{cart.map((item, idx) => {
-					return <ProductCard key={`${item.key}-${idx}`} item={item} />
+				{cart.map((item) => {
+					return <ProductCard key={item.itemId} item={item} />
 				})}
 			</div>
 			<div className="flex flex-col items-center gap-2 p-4 bg-slate-100 rounded-lg">

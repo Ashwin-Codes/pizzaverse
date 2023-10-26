@@ -5,6 +5,7 @@ import MultiSelect from "../../components/MultiSelect"
 import { MdClose as CloseButtonIcon } from "react-icons/md"
 import { useDispatch } from "react-redux"
 import { cartActions } from "../cart/cartSlice"
+import { v4 as uuid } from "uuid"
 
 export default function AddToCartPopup({ closePopup, pizza }) {
 	const dispatch = useDispatch()
@@ -36,7 +37,7 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 	}
 
 	function addProductToCartHandler() {
-		const order = { ...pizza, size: [], toppings: [], quantity: 1 }
+		const order = { ...pizza, size: [], toppings: [], quantity: 1, itemId: uuid() }
 
 		// Add sizes
 		// Add array of sizes
