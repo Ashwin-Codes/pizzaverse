@@ -49,7 +49,7 @@ export default function SortButtons() {
 				onClick={() => {
 					setOpenOptions((currentOption) => !currentOption)
 				}}>
-				Sort
+				Sort by ratings and price
 			</button>
 			<div
 				className={`flex flex-col items-start overflow-hidden transition-all gap-1 md:gap-2 md:flex-row ${
