@@ -9,6 +9,7 @@ export default {
 			},
 			colors: {
 				"pizza-orange": "#f16e05",
+				"pizza-orange-light": "#ff8628",
 				"olive-black": "#3f4140",
 			},
 		},
