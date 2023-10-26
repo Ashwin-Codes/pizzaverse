@@ -3,8 +3,13 @@ import SingleSelect from "../../components/SingleSelect"
 import Ratings from "./Ratings"
 import MultiSelect from "../../components/MultiSelect"
 import { MdClose as CloseButtonIcon } from "react-icons/md"
+import { useDispatch } from "react-redux"
+import { cartActions } from "../cart/cartSlice"
 
 export default function AddToCartPopup({ closePopup, pizza }) {
+	const dispatch = useDispatch()
+	const [addButtonText, setAddButtonText] = useState("Add to cart")
+
 	const [pickedSizes, setPickedSizes] = useState([]) //  User can pick single or multiple sizes as per API
 	const sizeOptions = pizza.size[0].items.map((option) => option.size) // All avaiable pizza sizes
 	const sizeHeading = pizza.size[0].title // API provided title
@@ -28,6 +33,44 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 		closePopup()
 		// Enable scroll in body
 		document.body.style.overflow = "scroll"
+	}
+
+	function addProductToCartHandler() {
+		const order = { ...pizza, size: [], toppings: [] }
+
+		// Add sizes
+		// Add array of sizes
+		if (typeof pickedSizes === "object" && pickedSizes.length) {
+			pickedSizes.forEach((size) => {
+				order.size.push({ size: size })
+			})
+		}
+		// Add single size
+		if (typeof pickedSizes === "string") {
+			order.size.push({ size: pickedSizes })
+		}
+
+		// Add toppings
+		// Add array of topings
+		if (typeof pickedToppings === "object" && pickedToppings.length) {
+			pickedToppings.forEach((topping) => {
+				order.toppings.push({ toppings: topping })
+			})
+		}
+
+		// Add single topping
+		if (typeof pickedToppings === "string") {
+			order.toppings.push({ size: pickedToppings })
+		}
+
+		dispatch(cartActions.addProduct(order))
+		// Change button text to 'added' state
+		setAddButtonText("Added")
+
+		// Close popup after 2 seconds
+		setTimeout(() => {
+			handlePopupClose()
+		}, 2000)
 	}
 
 	return (
@@ -71,9 +114,10 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 				)}
 
 				<button
+					onClick={addProductToCartHandler}
 					className="bg-pizza-orange text-white px-2 py-2 font-bold rounded-lg disabled:bg-gray-400"
 					disabled={pickedSizes.length < 1 || pickedToppings.length < 1}>
-					Add to cart
+					{addButtonText}
 				</button>
 			</div>
 		</div>
