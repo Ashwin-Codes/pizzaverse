@@ -36,7 +36,7 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 	}
 
 	function addProductToCartHandler() {
-		const order = { ...pizza, size: [], toppings: [] }
+		const order = { ...pizza, size: [], toppings: [], quantity: 1 }
 
 		// Add sizes
 		// Add array of sizes
