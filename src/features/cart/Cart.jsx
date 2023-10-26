@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux"
 import { getCart } from "./cartSlice"
 import ProductCard from "./ProductCard"
+import { PiSmileySad as SadFaceIcon } from "react-icons/pi"
+import { Link } from "react-router-dom"
 
 export default function Cart() {
 	const cart = useSelector(getCart)
@@ -12,6 +14,21 @@ export default function Cart() {
 		.reduce((price, accu) => {
 			return accu + price
 		}, 0)
+
+	if (cart.length < 1) {
+		return (
+			<div className="text-olive-black w-11/12 mx-auto 2xl:w-[85%] flex flex-col justify-center items-center">
+				<SadFaceIcon className="text-4xl" />
+				<h1 className="text-xl text-center">No pizza in cart</h1>
+				<span className="flex text-xl gap-1">
+					<h1 className="text-xl text-center">Add your favourite pizza from</h1>
+					<Link to="/" className="text-pizza-orange font-bold">
+						here
+					</Link>
+				</span>
+			</div>
+		)
+	}
 
 	return (
 		<div className="text-olive-black w-11/12 mx-auto 2xl:w-[85%]">
