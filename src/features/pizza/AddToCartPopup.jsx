@@ -54,13 +54,13 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 		// Add array of topings
 		if (typeof pickedToppings === "object" && pickedToppings.length) {
 			pickedToppings.forEach((topping) => {
-				order.toppings.push({ toppings: topping })
+				order.toppings.push({ topping: topping })
 			})
 		}
 
 		// Add single topping
 		if (typeof pickedToppings === "string") {
-			order.toppings.push({ size: pickedToppings })
+			order.toppings.push({ topping: pickedToppings })
 		}
 
 		dispatch(cartActions.addProduct(order))
