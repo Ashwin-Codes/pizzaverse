@@ -7,13 +7,13 @@ export default function Ratings({ rating }) {
 	// Add a full start for every rating
 	let i = 1
 	while (i <= rating) {
-		stars.push(<FullStarIcon />)
+		stars.push(<FullStarIcon key={i} />)
 		i++
 	}
 
 	// Add a half star if found 0.5
 	if (rating < i && rating > i - 1) {
-		stars.push(<HalfStarIcon />)
+		stars.push(<HalfStarIcon key={i} />)
 	}
 
 	// Handle if rating is 0
