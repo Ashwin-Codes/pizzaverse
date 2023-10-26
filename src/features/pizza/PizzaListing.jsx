@@ -7,6 +7,7 @@ import PizzaCard from "./PizzaCard"
 import FilterButtons from "./FilterButtons"
 import { useSearchParams } from "react-router-dom"
 import SortButtons from "./SortButtons"
+import AddToCartPopup from "./AddToCartPopup"
 
 export default function PizzaListing() {
 	const initiated = useRef(false) // Dispatched state
@@ -16,6 +17,19 @@ export default function PizzaListing() {
 
 	const allPizza = useSelector(getAllPizza)
 	const [pizza, setPizza] = useState(allPizza ? allPizza : [])
+
+	// Popup state
+	const [openPopup, setOpenPopup] = useState(false)
+	const [popupPizza, setPopupPizza] = useState(null)
+
+	function addToCartHandler(pizza) {
+		setPopupPizza(pizza)
+		setOpenPopup(true)
+	}
+
+	function closePopupHandler() {
+		setOpenPopup(false)
+	}
 
 	useEffect(() => {
 		const filter = searchParams.get("filter")
@@ -79,11 +93,14 @@ export default function PizzaListing() {
 
 	return (
 		<>
+			{popupPizza && openPopup && (
+				<AddToCartPopup openPopup={openPopup} closePopup={closePopupHandler} pizza={popupPizza} />
+			)}
 			<SortButtons />
 			<FilterButtons />
 			<div className="flex flex-wrap gap-4 font-inter mb-24 xl:w-[90%] xl:mx-auto xl:gap-6">
 				{pizza.map((singlePizza) => {
-					return <PizzaCard key={singlePizza.id} pizza={singlePizza} />
+					return <PizzaCard key={singlePizza.id} pizza={singlePizza} onAddToCart={addToCartHandler} />
 				})}
 			</div>
 		</>
