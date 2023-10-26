@@ -98,7 +98,7 @@ export default function PizzaListing() {
 			)}
 			<SortButtons />
 			<FilterButtons />
-			<div className="flex flex-wrap gap-4 font-inter mb-24 xl:w-[90%] xl:mx-auto xl:gap-6">
+			<div className="flex flex-wrap gap-4 font-inter pb-40 xl:w-[90%] xl:mx-auto xl:gap-6">
 				{pizza.map((singlePizza) => {
 					return <PizzaCard key={singlePizza.id} pizza={singlePizza} onAddToCart={addToCartHandler} />
 				})}

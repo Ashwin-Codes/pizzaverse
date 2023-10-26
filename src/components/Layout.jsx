@@ -4,10 +4,10 @@ import Footer from "./Footer"
 
 export default function Layout() {
 	return (
-		<>
+		<div className="relative min-h-screen">
 			<Navbar />
 			<Outlet />
 			<Footer />
-		</>
+		</div>
 	)
 }
