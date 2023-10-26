@@ -4,7 +4,6 @@ import ProductCard from "./ProductCard"
 
 export default function Cart() {
 	const cart = useSelector(getCart)
-
 	// Subtotal
 	const cartTotal = cart
 		.map((item) => {

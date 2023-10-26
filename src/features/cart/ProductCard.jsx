@@ -1,8 +1,20 @@
 import Ratings from "../pizza/Ratings"
 import { IoRemoveSharp as RemoveIcon } from "react-icons/io5"
 import { IoAddSharp as AddIcon } from "react-icons/io5"
+import { cartActions } from "./cartSlice"
+import { useDispatch } from "react-redux"
 
 export default function ProductCard({ item }) {
+	const dispatch = useDispatch()
+
+	function handleIncrementQuantity() {
+		dispatch(cartActions.increaseProductQuantity(item.itemId))
+	}
+
+	function handleDecrementQuantity() {
+		dispatch(cartActions.decreaseProductQuantity(item.itemId))
+	}
+
 	return (
 		<div className="flex flex-col flex-grow gap-5 items-center rounded-md p-4 shadow-xl bg-gray-50 border-2 border-gray-100 sm:max-w-xs ">
 			<div className="w-full h-28 overflow-hidden shrink-0 shadow-2xl rounded-md">
@@ -17,16 +29,16 @@ export default function ProductCard({ item }) {
 				</span>
 				<div className="flex gap-2 bg-pizza-orange text-white w-max px-4 rounded-lg text-lg mx-auto">
 					<button className="cursor-pointer">
-						<RemoveIcon />
+						<RemoveIcon onClick={handleDecrementQuantity} />
 					</button>
 					<span>{item.quantity}</span>
 					<button className="cursor-pointer">
-						<AddIcon />
+						<AddIcon onClick={handleIncrementQuantity} />
 					</button>
 				</div>
 				<div className="flex justify-between bg-slate-100 border border-slate-200 p-4 rounded-lg shadow-lg">
-					<span>
-						<h2 className="font-semibold">Ordered Size</h2>
+					<span className="flex flex-col gap-2">
+						<h2 className="font-semibold">Size</h2>
 						{item.size.map((size) => {
 							return (
 								<p
