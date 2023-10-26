@@ -65,13 +65,9 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 		}
 
 		dispatch(cartActions.addProduct(order))
-		// Change button text to 'added' state
-		setAddButtonText("Added")
 
-		// Close popup after 2 seconds
-		setTimeout(() => {
-			handlePopupClose()
-		}, 2000)
+		// Change button text to 'added' state
+		setAddButtonText("Added to cart")
 	}
 
 	return (
