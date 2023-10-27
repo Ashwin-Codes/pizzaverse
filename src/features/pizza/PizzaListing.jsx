@@ -8,6 +8,7 @@ import FilterButtons from "./FilterButtons"
 import { useSearchParams } from "react-router-dom"
 import SortButtons from "./SortButtons"
 import AddToCartPopup from "./AddToCartPopup"
+import Loader from "../../components/Loader"
 
 export default function PizzaListing() {
 	const initiated = useRef(false) // Dispatched state
@@ -90,6 +91,14 @@ export default function PizzaListing() {
 			dispatch(fetchAllPizza())
 		}
 	}, [pizzaStatus, dispatch])
+
+	if (pizzaStatus === REQUEST_STATUS.PENDING) {
+		return (
+			<div className="flex justify-center items-center h-40">
+				<Loader />
+			</div>
+		)
+	}
 
 	return (
 		<>
