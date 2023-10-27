@@ -1,5 +1,5 @@
-import { FaRegStar as FullStarIcon } from "react-icons/fa"
-import { FaRegStarHalf as HalfStarIcon } from "react-icons/fa"
+import { FaStar as FullStarIcon } from "react-icons/fa"
+import { FaStarHalf as HalfStarIcon } from "react-icons/fa"
 
 export default function Ratings({ rating }) {
 	const stars = []
