@@ -6,6 +6,10 @@
 
 Pizzaverse is an e-commerce storefront for a local pizza shop
 
+# 💻 Pizzaverse is live
+
+<b>Live at: </b> https://pizzaverse.ashwincodes.com <br>
+
 # 🕺 To run locally
 
 ```bash
