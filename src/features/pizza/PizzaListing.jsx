@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom"
 import SortButtons from "./SortButtons"
 import AddToCartPopup from "./AddToCartPopup"
 import Loader from "../../components/Loader"
+import Error from "../../components/Error"
 
 export default function PizzaListing() {
 	const initiated = useRef(false) // Dispatched state
@@ -92,10 +93,20 @@ export default function PizzaListing() {
 		}
 	}, [pizzaStatus, dispatch])
 
+	// Handles loading state
 	if (pizzaStatus === REQUEST_STATUS.PENDING) {
 		return (
 			<div className="flex justify-center items-center h-40">
 				<Loader />
+			</div>
+		)
+	}
+
+	// Handles error state
+	if (pizzaStatus === REQUEST_STATUS.REJECTED) {
+		return (
+			<div className="flex justify-center items-center h-40">
+				<Error />
 			</div>
 		)
 	}
