@@ -31,9 +31,9 @@ export default function Cart() {
 	}
 
 	return (
-		<div className="text-olive-black w-11/12 mx-auto 2xl:w-[85%]">
+		<div className="text-olive-black w-11/12 mx-auto 2xl:w-[85%] pb-40">
 			<h1 className="font-bold text-xl tracking-wider">Items Added</h1>
-			<div className="flex flex-wrap justify-center gap-3 px-4 py-2 md:justify-start">
+			<div className="flex flex-wrap justify-center gap-3 px-4 py-2 md:justify-start md:gap-6">
 				{cart.map((item) => {
 					return <ProductCard key={item.itemId} item={item} />
 				})}

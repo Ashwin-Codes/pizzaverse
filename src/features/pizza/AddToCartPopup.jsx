@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid"
 
 export default function AddToCartPopup({ closePopup, pizza }) {
 	const dispatch = useDispatch()
-	const [addButtonText, setAddButtonText] = useState("Add to cart")
+	const [addedToCart, setAddedToCart] = useState(false)
 
 	const [pickedSizes, setPickedSizes] = useState([]) //  User can pick single or multiple sizes as per API
 	const sizeOptions = pizza.size[0].items.map((option) => option.size) // All avaiable pizza sizes
@@ -32,11 +32,16 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 
 	function handlePopupClose() {
 		closePopup()
+
 		// Enable scroll in body
 		document.body.style.overflow = "scroll"
+
+		// Disable scroll-x
+		document.body.style.overflowX = "hidden"
 	}
 
 	function addProductToCartHandler() {
+		if (addedToCart) return // Stop more than one product addition to cart
 		const order = { ...pizza, size: [], toppings: [], quantity: 1, itemId: uuid() }
 
 		// Add sizes
@@ -67,7 +72,7 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 		dispatch(cartActions.addProduct(order))
 
 		// Change button text to 'added' state
-		setAddButtonText("Added to cart")
+		setAddedToCart(true)
 	}
 
 	return (
@@ -75,7 +80,7 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 			onClick={handlePopupClose}
 			className="fixed bg-[rgba(0,0,0,0.5)] top-0 left-0 w-full h-full flex justify-center items-center z-10">
 			<div
-				className="bg-white p-4 w-80 max-h-screen rounded-md flex flex-col gap-3 relative overflow-scroll md:w-96 lg:w-[30rem]"
+				className="bg-white p-4 w-80 max-h-screen rounded-md flex flex-col gap-3 relative overflow-auto md:w-96 lg:w-[30rem]"
 				onClick={(e) => {
 					e.stopPropagation()
 				}}>
@@ -114,7 +119,7 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 					onClick={addProductToCartHandler}
 					className="bg-pizza-orange text-white px-2 py-2 font-bold rounded-lg disabled:bg-gray-400"
 					disabled={pickedSizes.length < 1 || pickedToppings.length < 1}>
-					{addButtonText}
+					{addedToCart ? "Added to cart" : "Add to cart"}
 				</button>
 			</div>
 		</div>
