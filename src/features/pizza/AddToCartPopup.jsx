@@ -34,7 +34,7 @@ export default function AddToCartPopup({ closePopup, pizza }) {
 		closePopup()
 
 		// Enable scroll in body
-		document.body.style.overflow = "scroll"
+		document.body.style.overflow = "auto"
 
 		// Disable scroll-x
 		document.body.style.overflowX = "hidden"

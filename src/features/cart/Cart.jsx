@@ -43,9 +43,12 @@ export default function Cart() {
 					cart.length === 1 ? "item" : "items"
 				})`}</h3>
 				<p className="text-xl">{"₹" + cartTotal}</p>
-				<button className="w-max bg-pizza-orange text-xl text-white font-bold px-4 rounded-lg">
+				<Link
+					to="https://github.com/Ashwin-Codes/pizzaverse"
+					target="_blank"
+					className="w-max bg-pizza-orange text-xl text-white font-bold px-4 rounded-lg">
 					Proceed to buy
-				</button>
+				</Link>
 			</div>
 		</div>
 	)
